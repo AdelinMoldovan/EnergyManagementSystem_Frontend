@@ -1,0 +1,42 @@
+<div>
+  <div class= "container mt-5">
+    <div class="card">
+      <div class="card-header">
+        <h4>  Add New User 
+           <a routerLink="/client-page" class="btn btn-danger float-end"> Back</a> 
+        </h4>
+      </div>
+      <div class="card-body">
+   
+        <form (ngSubmit)="saveClient()">
+          <div class=" mb-3">
+            <label>Email</label>
+            <input type="text" [(ngModel)]="email" email ="email" class="form-control"/>
+            <span *ngIf="errors.email" class="text-danger">{{errors.name}}</span>
+          </div>
+          <div class=" mb-3">
+            <label>Username</label>
+            <input type="text" [(ngModel)]="username" username ="username" class="form-control"/>
+            <span *ngIf="errors.username" class="text-danger">{{errors.username}}</span>
+          </div>
+          <div class=" mb-3">
+            <label>Password</label>
+            <input type="text" [(ngModel)]="password" password ="password" class="form-control"/>
+            <span *ngIf="errors.password" class="text-danger">{{errors.password}}</span>
+          </div>
+          <div class="mb-3">
+            <label>Role</label>
+            <select [(ngModel)]="role" name="role" class="form-control">
+              <option value="0">ROLE_ADMIN</option>
+              <option value="1">ROLE_USER</option>
+            </select>
+            <span *ngIf="errors.role" class="text-danger">{{errors.role}}</span>
+          </div>
+          <div class="mb-3">
+            <button type="submit" class="btn btn-primary"> Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
