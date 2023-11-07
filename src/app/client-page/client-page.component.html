@@ -1,10 +1,28 @@
 <div>
-    <h1> Admin Page</h1>
+  <html>
+<head>
+  <style>
+      /* Style the h1 element */
+      h1 {
+          font-size: 24px; /* Adjust the font size to your preference */
+          color: #333; /* Change the text color to your preference */
+          text-align: center; /* Center-align the text */
+          background-color: #f0f0f0; /* Add a background color */
+          padding: 10px; /* Add some padding to the text */
+          border: 1px solid #ccc; /* Add a border */
+          border-radius: 5px; /* Add rounded corners */
+      }
+  </style>
+</head>
+<body>
+  <h1>Clients Administration Page</h1>
+</body>
+</html>
     <div class ="mt -5 container"> 
       <div class = "card"> 
         <div class =" card-header">
           <h4> Clients 
-            <a routerLink="/admin-page" class="btn btn-primary float-end">Add Clients
+            <a routerLink="/admin-page" class="btn btn-primary float-end">Add New User
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill-add" viewBox="0 0 16 16">
                 <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0Zm-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
                 <path d="M2 13c0 1 1 1 1 1h5.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.544-3.393C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4Z"/>
@@ -29,8 +47,9 @@
                 <td>{{item.email}}</td>
                 <td>{{item.password}}</td>
                 <td>
-                  <a routerLink="/users-edit" class="btn btn-success">Edit</a>
-                  <button type="button" class = "btn btn-danger float-end">Delete</button>
+                  <a [routerLink]="['/users-edit', item.userId]" class="btn btn-success">Edit</a>
+
+                  <button type="button" (click)="deleteUser($event, item.userId)" class = "btn btn-danger float-end">Delete</button>
                 </td>
               </tr>
             </tbody>

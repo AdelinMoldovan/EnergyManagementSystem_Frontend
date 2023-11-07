@@ -27,4 +27,17 @@ export class DevicesPageComponent {
       this.devices = res;
     });
   }
+
+  deleteDevice(event: any, deviceId: Number){
+    if(confirm("Are you sure you want to delete this device ?")){
+
+      event.target.innerText ="Deleting...";
+       
+      this.deviceService.destroyDevice(deviceId).subscribe((res:any) => {
+        this.getDeviceList();
+        
+      });
+    }
+
+  }
 }

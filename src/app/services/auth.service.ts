@@ -26,7 +26,9 @@ export class UserAuthGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     if (this.authService.isUser()) {
-      return true; // User is allowed to access the route
+      //return true; // User is allowed to access the route
+      this.router.navigate(['/user-page']);
+      return false;
     } else {
       this.router.navigate(['/login']); // Redirect to the login page if the user's role is not suitable
       return false;

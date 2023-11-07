@@ -27,4 +27,17 @@ export class ClientPageComponent {
       this.users = res;
     });
   }
+
+  deleteUser(event: any, userId: Number){
+    if(confirm("Are you sure you want to delete this user ?")){
+
+      event.target.innerText ="Deleting...";
+       
+      this.userService.destroyUser(userId).subscribe((res:any) => {
+        this.getUserList();
+        
+      });
+    }
+
+  }
 }

@@ -14,6 +14,8 @@ import { UsersEditComponent } from './users-edit/users-edit.component';
 import { DevicesEditComponent } from './devices-edit/devices-edit.component';
 import { DevicesAddComponent } from './devices-add/devices-add.component';
 import { UserPageComponent } from './user-page/user-page.component';
+import { UserAddComponent } from './user-add/user-add.component';
+import { AdminAuthGuard, UserAuthGuard } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { UserPageComponent } from './user-page/user-page.component';
     UsersEditComponent,
     DevicesEditComponent,
     DevicesAddComponent,
-    UserPageComponent
+    UserPageComponent,
+    UserAddComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,7 @@ import { UserPageComponent } from './user-page/user-page.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [UserAuthGuard, AdminAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

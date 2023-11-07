@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { Device } from '../models/device.model';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user.model';
+import { identifierName } from '@angular/compiler';
 export interface DeviceResponse{
+  device: any;
   "id": number
   "address": string
   "description": string
@@ -14,8 +16,12 @@ export interface DeviceResponse{
 export interface DeviceEditRespose{
   status: Number,
   device: DeviceResponse
-
 }
+export interface UserResponseType{
+  status: Number,
+  users: DeviceResponse[]
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -32,10 +38,18 @@ export class DeviceService {
 
   getDevices(){
     return this.httpClient.get('http://localhost:8081/api/devices');
-
   } 
   
-  getDevice(userId: bigint){
-    return this.httpClient.get<DeviceResponse>('http://localhost:8081/api/devices/${deviceId}');
+  getDevice(deviceId: bigint){
+    return this.httpClient.get<DeviceResponse>(`http://localhost:8081/api/devices/${deviceId}`);
   }
+
+  updateDevice(inputData: object, deviceId: Number) {
+    return this.httpClient.put(`http://localhost:8081/api/devices/${deviceId}`, inputData);
+  }
+
+  destroyDevice(deviceId: Number){
+    return this.httpClient.delete(`http://localhost:8081/api/devices/${deviceId}`)
+  }
+
 }

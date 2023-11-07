@@ -62,9 +62,9 @@ export class UserLoginComponent{
     
         // Redirect based on the user's role
         if (this.authService.isUser()) {
-          this.router.navigate(['/client-page']);
+          this.router.navigate(['/user-page']);
         } else if (this.authService.isAdmin()) {
-          this.router.navigate(['/admin-page']);
+          this.router.navigate(['/client-page']);
         }
       },
       (error) => {

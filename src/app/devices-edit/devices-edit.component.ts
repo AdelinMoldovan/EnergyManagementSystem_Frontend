@@ -8,7 +8,13 @@ import { DeviceService } from '../services/device.service';
 })
 export class DevicesEditComponent {
 
-  device!: any;
+  device: any = { 
+    address: '',
+    description: '', 
+    maxHourlyEnergyConsumtion: '',
+    name: '',
+   };
+   
   deviceId!: any;
   errors: any = []
 
@@ -18,13 +24,32 @@ export class DevicesEditComponent {
     this.deviceId = this.route.snapshot.paramMap.get('id');
     //alert();
 
-    this.deviceService.getDevice(this.deviceId).subscribe((res )=>{
-      console.log(res)
-      //this.user = res.user
-    });
-  }
+   
+    this.deviceService.getDevice(this.deviceId).subscribe((res) => {
+      console.log(res);
+      this.device.address = res.address;
+      this.device.description = res.description;
+      this.device.maxHourlyEnergyConsumtion = res.maxHourlyEnergyConsumtion; // Corrected property name
+      this.device.name = res.name;
+  });
+  
+}
 
   updateDevice( ){
+    var inputData = {
+      address: this.device.address,
+      description: this.device.description,
+      maxHourlyEnergyConsumtion: this.device.maxHourlyEnergyConsumtion,
+      name: this.device.name,
+    }
 
+    this.deviceService.updateDevice(inputData, this.deviceId).subscribe({
+      next: (res:any) =>{
+        console.log(res);
+      },
+      error: (err:any) =>{
+        this.errors = err.error.errors;
+      }
+    });
   }
 }

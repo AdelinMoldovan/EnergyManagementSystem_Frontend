@@ -7,10 +7,10 @@ import { DeviceService } from '../services/device.service';
   styleUrls: ['./devices-add.component.css']
 })
 export class DevicesAddComponent {
-  address!: string
-  description!: string
-  maxHourlyEnergyConsumtion!: string
-  name!: string
+  address: string = '';
+  description: string = '';
+  maxHourlyEnergyConsumtion: string = '';
+  name: string = '';
 
   errors: any = []
 
@@ -27,7 +27,8 @@ export class DevicesAddComponent {
     this.deviceService.saveDevice(inputData).subscribe({
       next:(res: any) => {
           console.log(res, 'response');
-          alert(res.message);
+          //alert(res.message);
+          console.log(inputData);
           this.address = '';
           this.description = '';
           this.maxHourlyEnergyConsumtion = '';

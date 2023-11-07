@@ -1,5 +1,23 @@
 <div>
-  <h1> Devices Page</h1>
+  <html>
+<head>
+  <style>
+      /* Style the h1 element */
+      h1 {
+          font-size: 24px; /* Adjust the font size to your preference */
+          color: #333; /* Change the text color to your preference */
+          text-align: center; /* Center-align the text */
+          background-color: #f0f0f0; /* Add a background color */
+          padding: 10px; /* Add some padding to the text */
+          border: 1px solid #ccc; /* Add a border */
+          border-radius: 5px; /* Add rounded corners */
+      }
+  </style>
+</head>
+<body>
+  <h1>Devices Administration Page</h1>
+</body>
+</html>
   <div class ="mt -5 container"> 
     <div class = "card"> 
       <div class =" card-header">
@@ -33,8 +51,8 @@
               <td>{{ item.name }}</td>
                <!--<td>{{ item.userId }}</td>-->
               <td>
-                <a routerLink="/devices-edit" class="btn btn-success">Edit</a>
-                <button type="button" class = "btn btn-danger float-end">Delete</button>
+                <a  [routerLink]="['/devices-edit', item.deviceId]" class="btn btn-success">Edit</a>
+                <button type="button" (click)="deleteDevice($event, item.deviceId)" class ="btn btn-danger float-end">Delete</button>
               </td>
             </tr>
           </tbody>

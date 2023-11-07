@@ -7,10 +7,10 @@ import { UserService } from '../services/user.service';
   templateUrl: './admin-page.component.html',
 })
 export class AdminPageComponent{
-  username!: string
-  email!: string
-  password!: string
-  role!: string
+  username: string = '';
+  email: string = '';
+  password: string = '';
+  role: string = '';
 
   errors: any = []
 
@@ -21,7 +21,7 @@ export class AdminPageComponent{
 
   constructor(private userService: UserService) {}
 
-  saveClient(){
+  saveUser(){
     var inputData = {
       email: this.email,
       username: this.username,
@@ -32,7 +32,7 @@ export class AdminPageComponent{
     this.userService.saveUser(inputData).subscribe({
       next:(res: any) => {
           console.log(res, 'response');
-          alert(res.message);
+          //alert(res.message);
           this.email = '';
           this.username = '';
           this.password = '';
