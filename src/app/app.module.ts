@@ -16,6 +16,12 @@ import { DevicesAddComponent } from './devices-add/devices-add.component';
 import { UserPageComponent } from './user-page/user-page.component';
 import { UserAddComponent } from './user-add/user-add.component';
 import { AdminAuthGuard, UserAuthGuard } from './services/auth.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MappingDevicesComponent } from './mapping-devices/mapping-devices.component';
+import { UnMappingDevicesComponent } from './un-mapping-devices/un-mapping-devices.component';
+import { ChatComponent } from './chat/chat.component';
+import { JwtService } from './services/jwt.service';
+
 
 @NgModule({
   declarations: [
@@ -29,15 +35,22 @@ import { AdminAuthGuard, UserAuthGuard } from './services/auth.service';
     DevicesEditComponent,
     DevicesAddComponent,
     UserPageComponent,
-    UserAddComponent
+    UserAddComponent,
+    MappingDevicesComponent,
+    UnMappingDevicesComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    
   ],
   providers: [UserAuthGuard, AdminAuthGuard],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, ]
 })
+
+
 export class AppModule { }

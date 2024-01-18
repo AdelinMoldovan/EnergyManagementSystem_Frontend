@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DeviceService } from '../services/device.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-devices-edit',
   templateUrl: './devices-edit.component.html',
@@ -18,7 +20,7 @@ export class DevicesEditComponent {
   deviceId!: any;
   errors: any = []
 
-  constructor(private route:  ActivatedRoute, private deviceService: DeviceService) {}
+  constructor(private route:  ActivatedRoute, private deviceService: DeviceService, private router: Router) {}
   ngOnInit(){
 
     this.deviceId = this.route.snapshot.paramMap.get('id');
@@ -46,10 +48,16 @@ export class DevicesEditComponent {
     this.deviceService.updateDevice(inputData, this.deviceId).subscribe({
       next: (res:any) =>{
         console.log(res);
+        this.router.navigate(['/devices-page']);
       },
       error: (err:any) =>{
         this.errors = err.error.errors;
       }
     });
   }
+/*
+  onSubmit() {
+       this.router.navigate(['/devices-page']);
+  }*/
 }
+

@@ -1,14 +1,18 @@
 import { Component } from '@angular/core';
 import { DeviceService } from '../services/device.service';
 import { Device } from '../models/device.model';
-
+import { User } from '../models/user.model';
+import { UserService, UserResponse } from '../services/user.service';
 @Component({
   selector: 'app-devices-page',
   templateUrl: './devices-page.component.html',
   styleUrls: ['./devices-page.component.css']
 })
 export class DevicesPageComponent {
+  device: Device = new Device();
+  user: any = { userId: '' }; // Assuming userId is a string
 
+  errors: any = {};
   constructor(private deviceService: DeviceService){
 
   }

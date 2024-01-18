@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { UserResponse, UserService }  from 'src/app/services/user.service'
+import { UserService, UserResponse } from '../services/user.service';
 import { User } from '../models/user.model';
-
+import { AuthService } from '../services/auth.service';
 @Component({
   selector: 'app-client-page',
   templateUrl: './client-page.component.html',
@@ -30,7 +30,7 @@ export class ClientPageComponent {
 
   deleteUser(event: any, userId: Number){
     if(confirm("Are you sure you want to delete this user ?")){
-
+      
       event.target.innerText ="Deleting...";
        
       this.userService.destroyUser(userId).subscribe((res:any) => {

@@ -1,0 +1,29 @@
+<div>
+    <div class="container mt-5">
+      <div class="card">
+        <div class="card-header">
+          <h4>Map Device to User
+            <a routerLink="/devices-page" class="btn btn-danger float-end">Back</a>
+          </h4>
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="mapDevice()">
+            <div *ngIf="device">
+              <div class="mb-3">
+                <label>DeviceId</label>
+                <input type="text" [(ngModel)]="device.deviceId" name="deviceId" class="form-control" />
+                <span *ngIf="errors.deviceId" class="text-danger">{{errors.deviceId}}</span>
+              </div>
+              <div class="mb-3">
+                <label>UserId</label>
+                <input type="text" [(ngModel)]="user.userId" name="userId" class="form-control" />
+                <span *ngIf="errors.userId" class="text-danger">{{errors.userId}}</span>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Map Device to User</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  

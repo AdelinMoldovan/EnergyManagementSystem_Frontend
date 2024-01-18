@@ -11,3 +11,12 @@ export class User {
     this.password = '';
   }
 }
+
+export class UserId {
+  userId: number;
+
+  constructor() {
+    this.userId = 0;
+  }
+}
+

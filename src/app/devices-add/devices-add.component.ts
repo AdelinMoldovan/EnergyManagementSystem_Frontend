@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Device } from '../models/device.model';
 import { DeviceService } from '../services/device.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-devices-add',
   templateUrl: './devices-add.component.html',
@@ -14,7 +15,7 @@ export class DevicesAddComponent {
 
   errors: any = []
 
-  constructor(private deviceService: DeviceService) {}
+  constructor(private deviceService: DeviceService, private router: Router) {}
 
   saveDevice(){
     var inputData = {
@@ -27,6 +28,7 @@ export class DevicesAddComponent {
     this.deviceService.saveDevice(inputData).subscribe({
       next:(res: any) => {
           console.log(res, 'response');
+          this.router.navigate(['/devices-page']);
           //alert(res.message);
           console.log(inputData);
           this.address = '';

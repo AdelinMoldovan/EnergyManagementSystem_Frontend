@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { User } from '../models/user.model';
 @Component({
@@ -20,7 +20,7 @@ export class UsersEditComponent {
   errors: any = []
 
 
-  constructor(private route:  ActivatedRoute, private userService: UserService) {}
+  constructor(private route:  ActivatedRoute, private userService: UserService, private router: Router)  {}
   ngOnInit(){
 
     this.userId = this.route.snapshot.paramMap.get('id');
@@ -49,6 +49,7 @@ export class UsersEditComponent {
     this.userService.updateUser(inputData, this.userId).subscribe({
       next: (res:any) =>{
         console.log(res);
+        this.router.navigate(['/client-page']);
       },
       error: (err:any) =>{
         this.errors = err.error.errors;

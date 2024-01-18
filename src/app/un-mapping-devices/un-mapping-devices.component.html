@@ -1,0 +1,24 @@
+<div>
+    <div class="container mt-5">
+      <div class="card">
+        <div class="card-header">
+          <h4>Unmap Device to User
+            <a routerLink="/devices-page" class="btn btn-danger float-end">Back</a>
+          </h4>
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="unmapDevice()">
+            <div *ngIf="device">
+              <div class="mb-3">
+                <label>DeviceId</label>
+                <input type="text" [(ngModel)]="device.deviceId" name="deviceId" class="form-control" />
+                <span *ngIf="errors.deviceId" class="text-danger">{{errors.deviceId}}</span>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-danger">Unmap Device from User</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  

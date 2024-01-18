@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../services/login.service';
 import { HttpClient } from '@angular/common/http';
-import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { LoginResponse } from './LoginResponse';
+import { AuthService } from '../services/auth.service';
+import { JwtService } from '../services/jwt.service';
+
 @Component({
   selector: 'app-user-login',
   templateUrl: './user-login.component.html',
@@ -26,7 +27,10 @@ export class UserLoginComponent{
     password: ''
   };
 
-  constructor(private http: HttpClient, private authService: AuthService, private router: Router) {}
+  constructor(private http: HttpClient, 
+              private authService: AuthService, 
+              private router: Router, 
+              private jwtService: JwtService) {}
 
   onSignUp() {
     const { userName, email, password } = this.signUpObj;
@@ -56,11 +60,23 @@ export class UserLoginComponent{
     return this.http.post<LoginResponse>('http://localhost:8080/api/login', body).subscribe(
       (response) => {
         console.log('Login successful:', response);
-    
-        // Set the user role in the AuthService based on the response
-        this.authService.setRole(response.role);
-    
-        // Redirect based on the user's role
+  
+        const decodedToken = this.jwtService.decodeToken(response.token);
+  
+        console.log('Decoded Token:', decodedToken);
+  /*
+        console.log('ID:', decodedToken.id);
+        console.log('Username', decodedToken.sub); 
+        console.log('Role:', decodedToken.role);
+  */
+        sessionStorage.setItem('token', response.token);
+  
+        localStorage.setItem('id', decodedToken.id);
+        localStorage.setItem('username', decodedToken.sub);
+  
+        
+        this.authService.setRoleFromToken();
+  
         if (this.authService.isUser()) {
           this.router.navigate(['/user-page']);
         } else if (this.authService.isAdmin()) {
@@ -72,6 +88,7 @@ export class UserLoginComponent{
       }
     );
   }
+  
   
 
 }

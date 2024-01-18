@@ -4,7 +4,7 @@ export class Device {
     description: string;
     maxHourlyEnergyConsumtion: string;
     name: string;
-    userId: string;
+    user: { userId: number };
   
     constructor() {
       this.deviceId = 0;
@@ -12,7 +12,8 @@ export class Device {
       this.description = '';
       this.maxHourlyEnergyConsumtion = '';
       this.name = '';
-      this.userId = '';
+      this.user = { userId: 1 };
     }
   }
+ 
   

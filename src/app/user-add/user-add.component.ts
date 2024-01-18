@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { User } from '../models/user.model';
 import { UserService } from '../services/user.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-add',
@@ -15,7 +16,7 @@ export class UserAddComponent {
 
   errors: any = [];
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router) {}
 
   saveUser(){
     var inputData = {
@@ -28,6 +29,7 @@ export class UserAddComponent {
     this.userService.saveUser(inputData).subscribe({
       next:(res: any) => {
           console.log(res, 'response');
+          //this.router.navigate(['/client-page']);
           alert(res.message);
           this.email = '';
           this.username = '';
